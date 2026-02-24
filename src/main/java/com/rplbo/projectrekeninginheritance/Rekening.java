@@ -2,10 +2,14 @@ package com.rplbo.projectrekeninginheritance;
 
 public class Rekening {
     private Nasabah nasabah;
-    private int saldo;
+    protected int saldo;
 
     public Rekening(Nasabah nasabah, int saldo) {
-        nasabah = new Nasabah(nasabah.getNama(), nasabah.getIdentitas(), nasabah.getAlamat());
+        this.nasabah = new Nasabah(
+                nasabah.getNama(),
+                nasabah.getIdentitas(),
+                nasabah.getAlamat()
+        );
         this.saldo = saldo;
     }
 
@@ -15,12 +19,12 @@ public class Rekening {
 
     public void penyetoran(int jumlah) {
         if (jumlah > 0)
-            saldo = saldo + jumlah;
+            saldo += jumlah;
     }
 
     public void penarikan(int jumlah) {
         int saldoBaru = saldo - jumlah;
-        if(saldoBaru > 0 && jumlah > 0)
+        if (saldoBaru >= 0 && jumlah > 0)
             saldo = saldoBaru;
     }
 
@@ -32,4 +36,3 @@ public class Rekening {
         return saldo;
     }
 }
-
